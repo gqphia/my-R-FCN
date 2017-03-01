@@ -13,6 +13,9 @@ from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
 import numpy as np
 
+#import KITTI dataset
+import datasets.kitti
+
 # Set up voc_<year>_<split> using selective search "fast" mode
 for year in ['2007', '2012', '0712']:
     for split in ['train', 'val', 'trainval', 'test']:
@@ -31,6 +34,13 @@ for year in ['2015']:
     for split in ['test', 'test-dev']:
         name = 'coco_{}_{}'.format(year, split)
         __sets[name] = (lambda split=split, year=year: coco(split, year))
+
+# Set kitti train and test 
+imageset = 'kitti_train'
+devkit = '/home/qian/faster-rcnn-car/kitti'
+__sets['kitti_train'] = (lambda imageset = imageset, devkit = devkit: datasets.kitti(imageset,devkit))
+imageset = 'kitti_test'
+__sets['kitti_test'] = (lambda imageset = imageset, devkit = devkit: datasets.kitti(imageset,devkit))
 
 def get_imdb(name):
     """Get an imdb (image database) by name."""
