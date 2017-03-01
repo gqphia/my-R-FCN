@@ -19,6 +19,7 @@ import argparse
 import pprint
 import numpy as np
 import sys
+import pdb
 
 def parse_args():
     """
