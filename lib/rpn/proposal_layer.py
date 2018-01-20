@@ -127,6 +127,29 @@ class ProposalLayer(caffe.Layer):
         # 2. clip predicted boxes to image
         proposals = clip_boxes(proposals, im_info[:2])
 
+	###########added#############
+	## Kaimin's anchor box ##
+	#id_to_keep = 0 # the id of anchor chosen from[0,1,...,A-1] proposals
+
+	"""
+        Some rules about how to assign id to different set of anchors:
+        if your setting is ratios=[0.5, 1, 0.5], and  scales=np.array([2,4,8,16,32])
+        Then 
+        anchor scales = 2 and ratios =0.5 gets an id = 0
+        anchor scales = 4 and ratios =0.5 gets an id = 1
+        anchor scales = 8 and ratios =0.5 gets an id = 2
+        anchor scales = 16 and ratios =0.5 gets an id = 3
+        anchor scales = 32 and ratios =0.5 gets an id =  4
+        anchor scales = 2 and ratios =1 gets an id = 5
+        anchor scales = 4 and ratios =1 gets an id = 6
+        """
+	#keep = id_to_keep + A*np.arange(K)
+	#proposals = proposals[keep,:]
+	#scores = scores[keep]
+
+	# end Kaimin's anchor box parameters for results
+	##########################
+
         # 3. remove predicted boxes with either height or width < threshold
         # (NOTE: convert min_size to input image scale stored in im_info[2])
         keep = _filter_boxes(proposals, min_size * im_info[2])

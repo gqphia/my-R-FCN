@@ -1,5 +1,6 @@
 train_net: "models/pascal_voc/ResNet_50/rfcn_end2end/train_agnostic.prototxt"
 base_lr: 0.001
+test_interval: 2000
 lr_policy: "step"
 gamma: 0.1
 stepsize: 80000
@@ -11,6 +12,6 @@ weight_decay: 0.0005
 # function
 snapshot: 0
 # We still use the snapshot prefix, though
-snapshot_prefix: "resnet50_rfcn"
+snapshot_prefix: "resnet50_rfcn_area1.3_12scales"
 iter_size: 2
 # debug_info: true

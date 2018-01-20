@@ -298,9 +298,9 @@ class kitti(datasets.imdb):
         cmd += '{:s}'.format(datasets.MATLAB)
         cmd += ' -r "dbstop if error; '
         cmd +=''' setenv('LC_ALL','C'); '''
-        cmd += 'voc_eval(\'{:s}\',\'{:s}\',\'{:s}\',\'{:s}\',{:d}); "' \
+        cmd += 'Kaimin_voc_eval(\'{:s}\',\'{:s}\',\'{:s}\',\'{:s}\',{:d}); "' \
                .format(self._devkit_path, comp_id,self._image_set, output_dir, int(rm_results))
-                
+                #Kaimin_voc_eval
         print('Running:\n{}'.format(cmd))
         status = subprocess.call(cmd, shell=True)
 

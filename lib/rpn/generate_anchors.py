@@ -40,7 +40,11 @@ def generate_anchors(base_size=16, ratios=[0.5, 1, 2],
     Generate anchor (reference) windows by enumerating aspect ratios X
     scales wrt a reference (0, 0, 15, 15) window.
     """
-
+    """
+    Kaimin:use following code to set the scales of anchor you chose for your experiment
+    """  
+    scales=np.array([2, 2.28, 2.60, 2.96, 3.38, 3.85, 4.40, 5.00, 5.72, 6.52, 7.44, 8.48]) #[2,4,8,16,32]    #2**np.arange(1, 6)
+    #scales=np.array([2,2.83,4,5.66,8,11.31,16])
     base_anchor = np.array([1, 1, base_size, base_size]) - 1
     ratio_anchors = _ratio_enum(base_anchor, ratios)
     anchors = np.vstack([_scale_enum(ratio_anchors[i, :], scales)
